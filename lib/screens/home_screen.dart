@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/top_bar.dart';
+import '../widgets/player_stories.dart';
+import '../widgets/match_list.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,7 +14,22 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     Center(child: Text("Stats")),
     Center(child: Text("Actu'x")),
-    Center(child: Text("Accueil")),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        TopBar(),
+        SizedBox(height: 10),
+        PlayerStories(),
+        SizedBox(height: 10),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Text("UEFA Champions League", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        ),
+        SizedBox(height: 8),
+        MatchList(),
+        Expanded(child: Center(child: Text("Accueil"))),
+      ],
+    ),
     Center(child: Text("Prono'x")),
     Center(child: Text("Profil")),
   ];
