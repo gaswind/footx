@@ -18,41 +18,49 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     Center(child: Text("Stats")),
     Center(child: Text("Actu'x")),
-  Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: const [
-      TopBar(),
-      SizedBox(height: 10),
-      PlayerStories(),
-      SizedBox(height: 10),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Text("UEFA Champions League", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-      ),
-      SizedBox(height: 8),
-      MatchList(matches: dummyMatches),
+  SingleChildScrollView(
+  child: SafeArea(
+    child: Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          TopBar(),
+          SizedBox(height: 10),
+          PlayerStories(),
+          SizedBox(height: 10),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text("UEFA Champions League", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          ),
+          SizedBox(height: 8),
+          MatchList(matches: dummyMatches),
 
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Text("Ligue 1", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-      ),
-      MatchList(matches: ligue1Matches),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text("Ligue 1", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          ),
+          MatchList(matches: ligue1Matches),
 
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Text("La Liga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-      ),
-      MatchList(matches: laligaMatches),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text("La Liga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          ),
+          MatchList(matches: laligaMatches),
 
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Text("Bundesliga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-      ),
-      MatchList(matches: bundesligaMatches),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text("Bundesliga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          ),
+          MatchList(matches: bundesligaMatches),
 
-      Expanded(child: SizedBox()), // pour scroll si besoin
-    ],
+          SizedBox(height: 20),
+        ],
+      ),
+    ),
   ),
+),
+
 
     Center(child: Text("Prono'x")),
     Center(child: Text("Profil")),
