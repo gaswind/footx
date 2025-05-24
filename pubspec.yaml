@@ -69,6 +69,13 @@ flutter:
     - assets/barca.png
     - assets/bayern.png
     - assets/napoli.png
+    - assets/atletico.png
+    - assets/dortmund.png
+    - assets/lens.png
+    - assets/lyon.png
+    - assets/om.png
+    - assets/seville.png
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

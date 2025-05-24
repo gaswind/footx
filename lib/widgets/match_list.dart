@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../data/dummy_matches.dart';
+import '../models/match.dart';
 
 class MatchList extends StatelessWidget {
-  const MatchList({super.key});
+  final List<Match> matches;
+
+  const MatchList({super.key, required this.matches});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +12,9 @@ class MatchList extends StatelessWidget {
       height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: dummyMatches.length,
+        itemCount: matches.length,
         itemBuilder: (context, index) {
-          final match = dummyMatches[index];
+          final match = matches[index];
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 8.0),
             padding: const EdgeInsets.all(8.0),
@@ -28,9 +30,7 @@ class MatchList extends StatelessWidget {
                   children: [
                     Image.asset(match.logoA, height: 24),
                     const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(match.teamA, style: const TextStyle(fontSize: 12)),
-                    ),
+                    Expanded(child: Text(match.teamA, style: const TextStyle(fontSize: 12))),
                     Text(match.scoreA.toString(), style: const TextStyle(fontSize: 14)),
                   ],
                 ),
@@ -39,9 +39,7 @@ class MatchList extends StatelessWidget {
                   children: [
                     Image.asset(match.logoB, height: 24),
                     const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(match.teamB, style: const TextStyle(fontSize: 12)),
-                    ),
+                    Expanded(child: Text(match.teamB, style: const TextStyle(fontSize: 12))),
                     Text(match.scoreB.toString(), style: const TextStyle(fontSize: 14)),
                   ],
                 ),
