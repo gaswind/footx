@@ -12,7 +12,7 @@ class TopBar extends StatelessWidget {
         children: [
           // Logo
           Image.asset(
-            'assets/logo.png',
+            'assets/ui/logo.png',
             height: 40,
           ),
 

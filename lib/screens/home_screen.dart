@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               LigueHeader(logoPath: 'assets/leagues/ligue1.png', title: "Ligue 1"),
               MatchList(matches: ligue1Matches),
 
-              LigueHeader(logoPath: 'assets/leagues/laliga.png', title: "La Liga"),
+              LigueHeader(logoPath: 'assets/leagues/la_liga.png', title: "La Liga"),
               MatchList(matches: laligaMatches),
 
               LigueHeader(logoPath: 'assets/leagues/bundesliga.png', title: "Bundesliga"),
