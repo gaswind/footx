@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import '../widgets/top_bar.dart';
 import '../widgets/player_stories.dart';
 import '../widgets/match_list.dart';
+import '../widgets/ligue_header.dart';
 import '../data/dummy_matches.dart';
 import '../data/ligue1_matches.dart';
 import '../data/laliga_matches.dart';
 import '../data/bundesliga_matches.dart';
+import '../screens/stats_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,54 +18,43 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 2;
 
   final List<Widget> _screens = [
-    Center(child: Text("Stats")),
-    Center(child: Text("Actu'x")),
-  SingleChildScrollView(
-  child: SafeArea(
-    child: Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          TopBar(),
-          SizedBox(height: 10),
-          PlayerStories(),
-          SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text("UEFA Champions League", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          ),
-          SizedBox(height: 8),
-          MatchList(matches: dummyMatches),
+    const StatsScreen(), // onglet 0
+    Center(child: Text("Actu'x")), // onglet 1
 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text("Ligue 1", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          ),
-          MatchList(matches: ligue1Matches),
+    // Onglet Accueil (index 2)
+    SingleChildScrollView(
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              TopBar(),
+              SizedBox(height: 10),
+              PlayerStories(),
+              SizedBox(height: 10),
 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text("La Liga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          ),
-          MatchList(matches: laligaMatches),
+              LigueHeader(logoPath: 'assets/leagues/ucl.png', title: "UEFA Champions League"),
+              MatchList(matches: dummyMatches),
 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text("Bundesliga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          ),
-          MatchList(matches: bundesligaMatches),
+              LigueHeader(logoPath: 'assets/leagues/ligue1.png', title: "Ligue 1"),
+              MatchList(matches: ligue1Matches),
 
-          SizedBox(height: 20),
-        ],
+              LigueHeader(logoPath: 'assets/leagues/laliga.png', title: "La Liga"),
+              MatchList(matches: laligaMatches),
+
+              LigueHeader(logoPath: 'assets/leagues/bundesliga.png', title: "Bundesliga"),
+              MatchList(matches: bundesligaMatches),
+
+              SizedBox(height: 24),
+            ],
+          ),
+        ),
       ),
     ),
-  ),
-),
 
-
-    Center(child: Text("Prono'x")),
-    Center(child: Text("Profil")),
+    Center(child: Text("Prono'x")), // onglet 3
+    Center(child: Text("Profil")),  // onglet 4
   ];
 
   @override

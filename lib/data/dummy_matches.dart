@@ -4,8 +4,8 @@ const List<Match> dummyMatches = [
   Match(
     teamA: "Real Madrid",
     teamB: "Man City",
-    logoA: "assets/real.png",
-    logoB: "assets/city.png",
+    logoA: "assets/clubs/real.png",
+    logoB: "assets/clubs/city.png",
     scoreA: 2,
     scoreB: 2,
     status: "FT",
@@ -13,8 +13,8 @@ const List<Match> dummyMatches = [
   Match(
     teamA: "PSG",
     teamB: "Barça",
-    logoA: "assets/psg.png",
-    logoB: "assets/barca.png",
+    logoA: "assets/clubs/psg.png",
+    logoB: "assets/clubs/barca.png",
     scoreA: 3,
     scoreB: 1,
     status: "FT",
@@ -22,8 +22,8 @@ const List<Match> dummyMatches = [
   Match(
     teamA: "Bayern",
     teamB: "Napoli",
-    logoA: "assets/bayern.png",
-    logoB: "assets/napoli.png",
+    logoA: "assets/clubs/bayern.png",
+    logoB: "assets/clubs/napoli.png",
     scoreA: 1,
     scoreB: 1,
     status: "18:00",

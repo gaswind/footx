@@ -58,24 +58,11 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logo.png
-    - assets/mbappe.png
-    - assets/haaland.png
-    - assets/vinijr.png
-    - assets/dembele.png
-    - assets/real.png
-    - assets/city.png
-    - assets/psg.png
-    - assets/barca.png
-    - assets/bayern.png
-    - assets/napoli.png
-    - assets/atletico.png
-    - assets/dortmund.png
-    - assets/lens.png
-    - assets/lyon.png
-    - assets/om.png
-    - assets/seville.png
-  
+    - assets/flags/
+    - assets/clubs/
+    - assets/players/
+    - assets/ui/
+    - assets/leagues/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
