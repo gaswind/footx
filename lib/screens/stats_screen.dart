@@ -27,7 +27,10 @@ class StatsScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text("STATS")),
+      appBar: AppBar(
+        title: const Text("STATS"),
+        centerTitle: true,
+      ),
       body: ListView.builder(
         itemCount: leagues.length,
         itemBuilder: (context, index) {

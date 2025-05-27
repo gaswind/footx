@@ -20,20 +20,23 @@ class TopBar extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                    hintText: 'Rechercher',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
-                    suffixIcon: Icon(Icons.search, color: Colors.grey),
+              child: Center(
+                child: Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white10,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 13.0, vertical: 6.0), // Ajoute vertical
+                      hintText: 'Rechercher',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: InputBorder.none,
+                      suffixIcon: Icon(Icons.search, color: Colors.grey),
+                    ),
                   ),
                 ),
               ),

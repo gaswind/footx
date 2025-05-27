@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/top_bar.dart';
 import '../widgets/player_stories.dart';
 import '../widgets/match_list.dart';
 import '../widgets/ligue_header.dart';
+import '../widgets/upcoming_matches.dart';
+import '../widgets/upcoming_by_league.dart';
 import '../data/dummy_matches.dart';
 import '../data/ligue1_matches.dart';
 import '../data/laliga_matches.dart';
 import '../data/bundesliga_matches.dart';
+
 import '../screens/stats_screen.dart';
+import '../screens/prono_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,10 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 2;
 
   final List<Widget> _screens = [
-    const StatsScreen(), // onglet 0
-    Center(child: Text("Actu'x")), // onglet 1
-
-    // Onglet Accueil (index 2)
+    const StatsScreen(),
+    Center(child: Text("Actu'x")),
     SingleChildScrollView(
       child: SafeArea(
         child: Padding(
@@ -34,17 +37,20 @@ class _HomeScreenState extends State<HomeScreen> {
               PlayerStories(),
               SizedBox(height: 10),
 
-              LigueHeader(logoPath: 'assets/leagues/ucl.png', title: "UEFA Champions League"),
-              MatchList(matches: dummyMatches),
+              LigueHeader(logoPath: 'assets/ucl.png', title: "UEFA Champions League"),
+              UpcomingByLeague(leagueId: 2),
 
-              LigueHeader(logoPath: 'assets/leagues/ligue1.png', title: "Ligue 1"),
-              MatchList(matches: ligue1Matches),
+              LigueHeader(logoPath: 'assets/ligue1.png', title: "Ligue 1"),
+              UpcomingByLeague(leagueId: 61),
 
-              LigueHeader(logoPath: 'assets/leagues/la_liga.png', title: "La Liga"),
-              MatchList(matches: laligaMatches),
+              LigueHeader(logoPath: 'assets/laliga.png', title: "La Liga"),
+              UpcomingByLeague(leagueId: 140),
 
-              LigueHeader(logoPath: 'assets/leagues/bundesliga.png', title: "Bundesliga"),
-              MatchList(matches: bundesligaMatches),
+              LigueHeader(logoPath: 'assets/bundesliga.png', title: "Bundesliga"),
+              UpcomingByLeague(leagueId: 78),
+
+              SizedBox(height: 16),
+              UpcomingMatches(),
 
               SizedBox(height: 24),
             ],
@@ -52,9 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     ),
-
-    Center(child: Text("Prono'x")), // onglet 3
-    Center(child: Text("Profil")),  // onglet 4
+    const PronoScreen(),
+    Center(child: Text("Profil")),
   ];
 
   @override

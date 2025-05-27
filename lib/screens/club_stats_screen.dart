@@ -1,56 +1,83 @@
 import 'package:flutter/material.dart';
+import '../services/api_service.dart';
 
-class ClubStatsScreen extends StatelessWidget {
+class ClubStatsScreen extends StatefulWidget {
   final String clubName;
   final String logoPath;
+  final int teamId;
+  final int leagueId;
 
-  const ClubStatsScreen({super.key, required this.clubName, required this.logoPath});
+  const ClubStatsScreen({
+    super.key,
+    required this.clubName,
+    required this.logoPath,
+    required this.teamId,
+    required this.leagueId,
+  });
+
+  @override
+  State<ClubStatsScreen> createState() => _ClubStatsScreenState();
+}
+
+class _ClubStatsScreenState extends State<ClubStatsScreen> {
+  int? wins;
+  int? draws;
+  int? losses;
+  String? form;
+  double? avgGoals;
+
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchStats();
+  }
+
+  Future<void> fetchStats() async {
+    final stats = await ApiService.getTeamStats(
+      teamId: widget.teamId,
+      leagueId: widget.leagueId,
+      season: 2023,
+    );
+
+    setState(() {
+      wins = stats?['fixtures']['wins']['total'];
+      draws = stats?['fixtures']['draws']['total'];
+      losses = stats?['fixtures']['loses']['total'];
+      form = stats?['form'];
+      avgGoals = double.tryParse(stats?['goals']['for']['average']['total'] ?? "0");
+      loading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Statistiques factices pour l'exemple
-    final winRate = 80;
-    final avgGoals = 2.3;
-    final form = ["V", "V", "N", "D", "V"];
-
     return Scaffold(
-      appBar: AppBar(title: Text(clubName)),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Image.asset(logoPath, height: 40),
-                const SizedBox(width: 10),
-                Text(clubName, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-              ],
+      appBar: AppBar(title: Text(widget.clubName)),
+      body: loading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(children: [
+                    Image.asset(widget.logoPath, height: 40),
+                    const SizedBox(width: 12),
+                    Text(widget.clubName, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  ]),
+                  const SizedBox(height: 20),
+                  Text("Forme récente : ${form ?? '-'}"),
+                  const SizedBox(height: 8),
+                  Text("Victoires : $wins"),
+                  Text("Nuls : $draws"),
+                  Text("Défaites : $losses"),
+                  const SizedBox(height: 8),
+                  Text("Moyenne de buts marqués : $avgGoals"),
+                ],
+              ),
             ),
-            const SizedBox(height: 24),
-            Text("Forme récente:", style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 10),
-            Row(
-              children: form.map((f) {
-                Color color = f == "V"
-                    ? Colors.green
-                    : f == "N"
-                        ? Colors.yellow
-                        : Colors.red;
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(12)),
-                  child: Text(f, style: const TextStyle(color: Colors.black)),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 24),
-            Text("% de victoires : $winRate%"),
-            Text("Moyenne de buts : $avgGoals"),
-          ],
-        ),
-      ),
     );
   }
 }
